@@ -39,8 +39,8 @@ RemoteCharacteristic.prototype.onWriteRequest = function(data, offset, withoutRe
     callback(this.RESULT_INVALID_ATTRIBUTE_LENGTH);
   }
   else {
-    console.log('4');
-    var button = data.getUint8(0);
+    console.log('4', data);
+    var button = data.readUInt8(0);
     console.log('button', button);
     switch (button) {
       case 1:
@@ -53,9 +53,9 @@ RemoteCharacteristic.prototype.onWriteRequest = function(data, offset, withoutRe
         console.log('other');
         break;
     }
+    console.log('5');
     callback(this.RESULT_SUCCESS);
   }
-  console.log('5');
 };
 
 module.exports = RemoteCharacteristic;
