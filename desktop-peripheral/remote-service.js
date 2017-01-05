@@ -8,7 +8,7 @@ var RemoteCharacteristic = require('./remote-characteristic');
 
 function RemoteService() {
   RemoteService.super_.call(this, {
-    uuid: '180E',
+    uuid: 'B1BF',
     characteristics: [
       new RemoteCharacteristic()
     ]

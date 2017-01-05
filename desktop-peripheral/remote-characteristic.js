@@ -8,11 +8,11 @@ var Characteristic = bleno.Characteristic;
 
 var RemoteCharacteristic = function() {
   RemoteCharacteristic.super_.call(this, {
-    uuid: '2A19',
+    uuid: 'C2CF',
     properties: ['read', 'write', 'writeWithoutResponse'],
     descriptors: [
       new Descriptor({
-        uuid: '2901',
+        uuid: 'C2CE',
         value: 'Remote control'
       })
     ]
