@@ -1,6 +1,5 @@
 var util = require('util');
 var os = require('os');
-var exec = require('child_process').exec;
 
 var bleno = require('bleno');
 
@@ -10,7 +9,7 @@ var Characteristic = bleno.Characteristic;
 var RemoteCharacteristic = function() {
   RemoteCharacteristic.super_.call(this, {
     uuid: '2A19',
-    properties: ['read', 'write'],
+    properties: ['read', 'write', 'writeWithoutResponse'],
     descriptors: [
       new Descriptor({
         uuid: '2901',
@@ -29,7 +28,7 @@ RemoteCharacteristic.prototype.onReadRequest = function(offset, callback) {
 };
 
 RemoteCharacteristic.prototype.onWriteRequest = function(data, offset, withoutResponse, callback) {
-  console.log('1');
+  console.log('1', withoutResponse);
   if (offset) {
     console.log('2');
     callback(this.RESULT_ATTR_NOT_LONG);
