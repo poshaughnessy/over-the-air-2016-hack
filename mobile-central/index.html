@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Web Bluetooth Remote</title>
   </head>
   <body>
@@ -10,11 +11,7 @@
     <button id="btn-right">Right</button>
     <script>
 
-      //var serviceUuid = '13333333-3333-3333-3333-333333333337';
-      //var serviceUuid = 'd0611e78-bbb4-4591-a5f8-487910ae4366';
-      //var serviceUuid = '03b80e5a-ede8-4b33-a751-6ce34ec4c700';
       var serviceUuid = 0xB1BF;
-      //var charUuid = '13333333-3333-3333-3333-333333330001';
       var charUuid = 0xC2CF;
       var characteristic;
 
@@ -43,12 +40,9 @@
       }
 
       function write(cmd) {
-        //characteristic.writeValue(cmd);
-        // switched to reading for testing
-        return characteristic.readValue()
-          .then(function(value) {
-            var batteryLevel = value.getUint8(0);
-            console.log('Battery level', batteryLevel);
+        return characteristic.writeValue(cmd)
+          .then(function() {
+            console.log('Written value', cmd);
           });
       }
 
