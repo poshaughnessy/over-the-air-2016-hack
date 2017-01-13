@@ -23,22 +23,17 @@ util.inherits(RemoteCharacteristic, Characteristic);
 
 RemoteCharacteristic.prototype.onReadRequest = function(offset, callback) {
   // return hardcoded value just for testing
-  console.log('read');
   callback(this.RESULT_SUCCESS, new Buffer([98]));
 };
 
 RemoteCharacteristic.prototype.onWriteRequest = function(data, offset, withoutResponse, callback) {
-  console.log('1', withoutResponse);
   if (offset) {
-    console.log('2');
     callback(this.RESULT_ATTR_NOT_LONG);
   }
   else if (data.length !== 1) {
-    console.log('3');
     callback(this.RESULT_INVALID_ATTRIBUTE_LENGTH);
   }
   else {
-    console.log('4', data);
     var button = data.readUInt8(0);
     console.log('button', button);
     switch (button) {
@@ -52,7 +47,6 @@ RemoteCharacteristic.prototype.onWriteRequest = function(data, offset, withoutRe
         console.log('other');
         break;
     }
-    console.log('5');
     callback(this.RESULT_SUCCESS);
   }
 };
